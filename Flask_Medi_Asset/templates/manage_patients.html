@@ -1,0 +1,308 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container py-5">
+
+
+
+    <!-- Header -->
+
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+
+        <div>
+
+
+            <h1 class="fw-bold">
+
+                Manage Patients
+
+            </h1>
+
+
+
+            <p class="text-muted">
+
+                View and manage registered patient accounts.
+
+            </p>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Patients Table -->
+
+
+    <div class="card p-4">
+
+
+        <div class="table-responsive">
+
+
+            <table class="table align-middle">
+
+
+                <thead>
+
+
+                    <tr>
+
+
+                        <th>
+                            Patient
+                        </th>
+
+
+                        <th>
+                            Email
+                        </th>
+
+
+                        <th>
+                            Phone
+                        </th>
+
+
+                        <th>
+                            Account Status
+                        </th>
+
+
+                        <th>
+                            Actions
+                        </th>
+
+
+                    </tr>
+
+
+                </thead>
+
+
+
+
+                <tbody>
+
+
+
+
+                {% for patient in patients %}
+
+
+
+
+                    <tr>
+
+
+
+                        <td>
+
+
+
+                            <div class="d-flex align-items-center">
+
+
+                                <div class="doctor-avatar me-3"
+                                     style="width:45px;height:45px;font-size:20px;">
+
+
+                                    <i class="bi bi-person-fill"></i>
+
+
+                                </div>
+
+
+
+                                <strong>
+
+                                    {{ patient.username }}
+
+                                </strong>
+
+
+                            </div>
+
+
+
+                        </td>
+
+
+
+
+
+
+
+                        <td>
+
+
+                            {{ patient.email }}
+
+
+                        </td>
+
+
+
+
+
+
+
+                        <td>
+
+
+                            {{ patient.phone }}
+
+
+                        </td>
+
+
+
+
+
+
+
+                        <td>
+
+
+
+                            {% if patient.is_active %}
+
+
+                            <span class="badge bg-success">
+
+                                Active
+
+                            </span>
+
+
+                            {% else %}
+
+
+                            <span class="badge bg-danger">
+
+                                Inactive
+
+                            </span>
+
+
+                            {% endif %}
+
+
+
+                        </td>
+
+
+
+
+
+
+
+                        <td>
+
+
+
+                            <a href="#"
+                               class="btn btn-sm btn-outline-primary">
+
+
+                                <i class="bi bi-eye"></i>
+
+                                View
+
+
+                            </a>
+
+
+
+
+
+                            <a href="#"
+                               class="btn btn-sm btn-outline-danger">
+
+
+                                <i class="bi bi-trash"></i>
+
+                                Remove
+
+
+                            </a>
+
+
+
+
+                        </td>
+
+
+
+
+                    </tr>
+
+
+
+
+
+
+                {% else %}
+
+
+
+
+
+                    <tr>
+
+
+                        <td colspan="5"
+                            class="text-center text-muted">
+
+
+                            No patients registered.
+
+
+                        </td>
+
+
+                    </tr>
+
+
+
+
+                {% endfor %}
+
+
+
+
+
+                </tbody>
+
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,279 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container py-5">
+
+
+    <!-- Welcome Section -->
+
+    <div class="card p-5 mb-5">
+
+
+        <div class="row align-items-center">
+
+
+            <div class="col-md-8">
+
+
+                <h1 class="fw-bold">
+
+                    Welcome, {{ current_user.username }}
+
+                </h1>
+
+
+                <p class="text-muted fs-5">
+
+                    Manage your appointments and connect with
+                    healthcare professionals easily.
+
+                </p>
+
+
+                <a href="{{ url_for('new_appointment') }}"
+                   class="btn btn-primary mt-3">
+
+
+                    <i class="bi bi-calendar-plus"></i>
+
+                    Book Appointment
+
+
+                </a>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="col-md-4 text-center">
+
+
+                <i class="bi bi-person-heart display-1 text-primary"></i>
+
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- Dashboard Cards -->
+
+
+    <div class="row g-4">
+
+
+
+
+
+        <div class="col-lg-4 col-md-6">
+
+
+            <div class="dashboard-card h-100">
+
+
+                <i class="bi bi-calendar-check display-4 text-primary"></i>
+
+
+
+                <h3 class="mt-3">
+
+                    My Appointments
+
+                </h3>
+
+
+
+                <p class="text-muted">
+
+                    View and manage your upcoming doctor appointments.
+
+                </p>
+
+
+
+                <a href="{{ url_for('appointment_list') }}"
+                   class="btn btn-outline-primary">
+
+
+                    View Appointments
+
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <div class="col-lg-4 col-md-6">
+
+
+            <div class="dashboard-card h-100">
+
+
+                <i class="bi bi-person-badge display-4 text-primary"></i>
+
+
+
+                <h3 class="mt-3">
+
+                    Find Doctors
+
+                </h3>
+
+
+
+                <p class="text-muted">
+
+                    Browse available doctors and specialists.
+
+                </p>
+
+
+
+                <a href="{{ url_for('doctor_list') }}"
+                   class="btn btn-outline-primary">
+
+
+                    View Doctors
+
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="col-lg-4 col-md-6">
+
+
+            <div class="dashboard-card h-100">
+
+
+                <i class="bi bi-shield-check display-4 text-primary"></i>
+
+
+
+                <h3 class="mt-3">
+
+                    Secure Healthcare
+
+                </h3>
+
+
+
+                <p class="text-muted">
+
+                    Your medical appointments are managed securely.
+
+                </p>
+
+
+
+                <a href="{{ url_for('home') }}"
+                   class="btn btn-outline-primary">
+
+
+                    Home
+
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+    <!-- Quick Action -->
+
+
+    <div class="card mt-5 p-4 text-center">
+
+
+        <h3 class="fw-bold">
+
+            Need a Doctor Consultation?
+
+        </h3>
+
+
+        <p class="text-muted">
+
+            Book your appointment with experienced specialists today.
+
+        </p>
+
+
+
+        <div>
+
+
+            <a href="{{ url_for('doctor_list') }}"
+               class="btn btn-primary">
+
+
+                Explore Doctors
+
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock %}

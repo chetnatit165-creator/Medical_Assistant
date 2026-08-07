@@ -1,0 +1,85 @@
+{# ==========================================================================
+   Shared Jinja2 macros — import in any template:
+   {% from "_macros.html" import render_field, stat_card, avatar, status_badge %}
+   ========================================================================== #}
+
+{# Render a WTForms field with Bootstrap classes + validation errors #}
+{% macro render_field(field, placeholder="", icon=None) %}
+  <div class="mb-3">
+    {{ field.label(class="form-label") }}
+    {% if icon %}
+      <div class="input-group">
+        <span class="input-group-text bg-white"><i class="bi bi-{{ icon }}"></i></span>
+        {{ field(class="form-control" ~ (" is-invalid" if field.errors else ""), placeholder=placeholder or field.label.text) }}
+      </div>
+    {% else %}
+      {{ field(class="form-control" ~ (" is-invalid" if field.errors else ""), placeholder=placeholder or field.label.text) }}
+    {% endif %}
+    {% for error in field.errors %}
+      <div class="{{ 'd-block invalid-feedback' if icon else 'invalid-feedback' }}">{{ error }}</div>
+    {% endfor %}
+  </div>
+{% endmacro %}
+
+{# Render a select field #}
+{% macro render_select(field) %}
+  <div class="mb-3">
+    {{ field.label(class="form-label") }}
+    {{ field(class="form-select" ~ (" is-invalid" if field.errors else "")) }}
+    {% for error in field.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}
+  </div>
+{% endmacro %}
+
+{# Render a checkbox field #}
+{% macro render_check(field) %}
+  <div class="form-check mb-3">
+    {{ field(class="form-check-input") }}
+    {{ field.label(class="form-check-label") }}
+  </div>
+{% endmacro %}
+
+{# KPI / dashboard card #}
+{% macro stat_card(label, value, icon="graph-up", tone="") %}
+  <div class="card card-hover stat-card {{ tone }} h-100">
+    <div class="card-body d-flex align-items-center justify-content-between">
+      <div>
+        <div class="stat-label">{{ label }}</div>
+        <div class="stat-value mt-1">{{ value }}</div>
+      </div>
+      <div class="stat-icon"><i class="bi bi-{{ icon }}"></i></div>
+    </div>
+  </div>
+{% endmacro %}
+
+{# Initial-based avatar (falls back when no photo exists) #}
+{% macro avatar(name, size="") %}
+  <div class="avatar {{ size }}">{{ (name or '?')|first|upper }}</div>
+{% endmacro %}
+
+{# Appointment status badge derived from date #}
+{% macro status_badge(appointment, now=None) %}
+  {% if now and appointment.appointment_date and appointment.appointment_date < now %}
+    <span class="badge text-bg-secondary">Completed</span>
+  {% else %}
+    <span class="badge text-bg-success">Upcoming</span>
+  {% endif %}
+{% endmacro %}
+
+{# Empty table / list state #}
+{% macro empty_state(text, icon="inbox", action_url=None, action_label=None) %}
+  <div class="empty-state">
+    <i class="bi bi-{{ icon }} d-block mb-3"></i>
+    <p class="mb-3">{{ text }}</p>
+    {% if action_url %}<a class="btn btn-primary btn-sm" href="{{ action_url }}">{{ action_label }}</a>{% endif %}
+  </div>
+{% endmacro %}
+
+{# Page header band #}
+{% macro page_header(title, subtitle=None, icon="clipboard2-pulse") %}
+  <div class="page-header">
+    <div class="container">
+      <h1 class="h3 mb-1"><i class="bi bi-{{ icon }} text-primary me-2"></i>{{ title }}</h1>
+      {% if subtitle %}<p class="mb-0 text-muted-soft">{{ subtitle }}</p>{% endif %}
+    </div>
+  </div>
+{% endmacro %}

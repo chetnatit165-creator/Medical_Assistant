@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="container py-5">
+
+
+    <!-- Welcome Section -->
+
+    <div class="card p-5 mb-5">
+
+
+        <div class="row align-items-center">
+
+
+            <div class="col-md-8">
+
+
+                <h1 class="fw-bold">
+
+                    Welcome, Dr. {{ current_user.username }}
+
+                </h1>
+
+
+
+                <p class="text-muted fs-5">
+
+                    Manage your appointments and provide better
+                    healthcare services to patients.
+
+                </p>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="col-md-4 text-center">
+
+
+                <i class="bi bi-person-badge-fill display-1 text-primary"></i>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Doctor Dashboard Cards -->
+
+
+    <div class="row g-4">
+
+
+
+
+
+        <!-- Appointments -->
+
+
+        <div class="col-lg-4 col-md-6">
+
+
+            <div class="dashboard-card h-100">
+
+
+                <i class="bi bi-calendar2-check display-4 text-primary"></i>
+
+
+
+                <h3 class="mt-3">
+
+                    Appointments
+
+                </h3>
+
+
+
+                <p class="text-muted">
+
+                    View and manage patient appointments assigned to you.
+
+                </p>
+
+
+
+                <a href="#"
+                   class="btn btn-outline-primary">
+
+
+                    View Appointments
+
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- Profile -->
+
+
+        <div class="col-lg-4 col-md-6">
+
+
+            <div class="dashboard-card h-100">
+
+
+                <i class="bi bi-person-lines-fill display-4 text-primary"></i>
+
+
+
+                <h3 class="mt-3">
+
+                    Doctor Profile
+
+                </h3>
+
+
+
+                <p class="text-muted">
+
+                    Update your specialization and professional details.
+
+                </p>
+
+
+
+                <a href="#"
+                   class="btn btn-outline-primary">
+
+
+                    Manage Profile
+
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <!-- Patients -->
+
+
+        <div class="col-lg-4 col-md-6">
+
+
+            <div class="dashboard-card h-100">
+
+
+                <i class="bi bi-people-fill display-4 text-primary"></i>
+
+
+
+                <h3 class="mt-3">
+
+                    Patients
+
+                </h3>
+
+
+
+                <p class="text-muted">
+
+                    Access patient appointment information.
+
+                </p>
+
+
+
+                <a href="#"
+                   class="btn btn-outline-primary">
+
+
+                    View Patients
+
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Information Section -->
+
+
+    <div class="card mt-5 p-5 text-center">
+
+
+        <h2 class="fw-bold">
+
+            Healthcare Professional Portal
+
+        </h2>
+
+
+
+        <p class="text-muted">
+
+
+            Medi Asset helps doctors efficiently manage
+            appointments and provide quality care.
+
+
+        </p>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+
+{% endblock %}

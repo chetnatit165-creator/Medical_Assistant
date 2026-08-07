@@ -1,0 +1,89 @@
+from Flask_Medi_Asset import app, db
+from Flask_Medi_Asset.forms import AppointmentForm
+from flask import render_template, redirect, url_for, flash
+from Flask_Medi_Asset.dummy_data import Appointment, Doctor
+from flask_login import login_required,current_user
+
+@app.route("/")
+def home():
+    doctors = Doctor.query.all()
+    return render_template("index.html", doctors=doctors)
+
+
+@app.route("/doctors")
+def doctor_list():
+    doctors = Doctor.query.all()
+    return render_template("doctors.html", doctors=doctors)
+
+
+@app.route("/appointments")
+@login_required
+def appointment_list():
+    if current_user.role != "patient":
+	flash("Access denied.","danger")
+	return redirect(url_for("home"))
+    appointments = Appointment.query.filter_by(
+	user_id=current_user.id
+    ).all()
+    return render_template(
+        "appointments.html",
+        appointments=appointments
+    )
+
+
+@app.route("/appointment/new", methods=["GET", "POST"])
+@login_required
+def new_appointment():
+    if current_user.role != "patient":
+	flash("Only patients can book appointments.","danger")
+	return redirect(url_for("home"))
+    doctors = Doctor.query.all()
+    form = AppointmentForm()
+    form.doctor.choices = [(0, "-- Select Doctor --")] + [
+        (doctor.id, doctor.name)
+        for doctor in doctors
+    ]
+
+    if not doctors:
+        flash(
+            "No doctors are available to book an appointment. Please check back later.",
+            "warning"
+        )
+        return redirect(url_for("doctor_list"))
+
+    if form.validate_on_submit():
+        appointment = Appointment(
+            appointment_date=form.date.data,
+            message=form.message.data,
+            doctor_id=form.doctor.data,
+	    user_id=current_user.id
+        )
+        db.session.add(appointment)
+        db.session.commit()
+
+        flash(
+            "Appointment booked successfully!",
+            "success"
+        )
+
+        return redirect(url_for("appointment_list"))
+
+    return render_template(
+        "appointment_form.html",
+        form=form
+    )
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("404.html"), 404

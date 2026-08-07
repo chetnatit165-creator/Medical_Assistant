@@ -1,0 +1,298 @@
+/* ==========================================================================
+   MediAsset — Medical Appointment System
+   Minimal custom CSS layered on top of Bootstrap 5.3
+   Theme: White / Medical Blue / Light Gray
+   ========================================================================== */
+
+:root {
+  --ma-blue: #0d6efd;
+  --ma-blue-dark: #0a58ca;
+  --ma-blue-soft: #e7f1ff;
+  --ma-teal: #0aa2c0;
+  --ma-gray: #f5f7fa;
+  --ma-border: #e6eaf0;
+  --ma-text: #1f2d3d;
+  --ma-muted: #6b7a90;
+  --ma-radius: 14px;
+  --ma-shadow: 0 6px 24px rgba(13, 110, 253, 0.08);
+  --ma-shadow-hover: 0 12px 32px rgba(13, 110, 253, 0.16);
+}
+
+/* ------------------------------- Base ---------------------------------- */
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--ma-gray);
+  color: var(--ma-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-muted-soft {
+  color: var(--ma-muted) !important;
+}
+
+/* ------------------------------ Navbar --------------------------------- */
+.navbar-medi {
+  background-color: #ffffff;
+  box-shadow: 0 2px 12px rgba(31, 45, 61, 0.06);
+}
+
+.navbar-medi .navbar-brand {
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--ma-blue);
+}
+
+.navbar-medi .navbar-brand i {
+  color: var(--ma-teal);
+}
+
+.navbar-medi .nav-link {
+  color: var(--ma-text);
+  font-weight: 500;
+  padding: 0.5rem 0.9rem !important;
+  border-radius: 8px;
+}
+
+.navbar-medi .nav-link:hover,
+.navbar-medi .nav-link.active {
+  color: var(--ma-blue-dark);
+  background-color: var(--ma-blue-soft);
+}
+
+.role-badge {
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ------------------------------- Cards --------------------------------- */
+.card {
+  border: 1px solid var(--ma-border);
+  border-radius: var(--ma-radius);
+  box-shadow: var(--ma-shadow);
+  background-color: #fff;
+}
+
+.card-hover {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ma-shadow-hover);
+}
+
+.card-header {
+  background-color: #fff;
+  border-bottom: 1px solid var(--ma-border);
+  border-radius: var(--ma-radius) var(--ma-radius) 0 0 !important;
+  font-weight: 600;
+}
+
+/* --------------------------- Stat / KPI cards -------------------------- */
+.stat-card {
+  border-left: 5px solid var(--ma-blue);
+}
+
+.stat-card.stat-teal { border-left-color: var(--ma-teal); }
+.stat-card.stat-green { border-left-color: #198754; }
+.stat-card.stat-amber { border-left-color: #ffc107; }
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--ma-muted);
+}
+
+.stat-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background-color: var(--ma-blue-soft);
+  color: var(--ma-blue);
+  font-size: 1.4rem;
+}
+
+/* ------------------------------- Hero ---------------------------------- */
+.hero {
+  background: linear-gradient(135deg, #ffffff 0%, var(--ma-blue-soft) 100%);
+  border-bottom: 1px solid var(--ma-border);
+  padding: 4.5rem 0;
+}
+
+.hero h1 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+}
+
+.hero .lead {
+  color: var(--ma-muted);
+  max-width: 34rem;
+}
+
+.page-header {
+  background: #fff;
+  border-bottom: 1px solid var(--ma-border);
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+/* ------------------------------- Forms --------------------------------- */
+.auth-wrapper {
+  max-width: 470px;
+  margin: 3rem auto;
+}
+
+.form-label {
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: 10px;
+  border-color: var(--ma-border);
+  padding: 0.6rem 0.85rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--ma-blue);
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12);
+}
+
+.btn {
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: var(--ma-blue);
+  border-color: var(--ma-blue);
+}
+
+.btn-primary:hover {
+  background-color: var(--ma-blue-dark);
+  border-color: var(--ma-blue-dark);
+}
+
+/* ------------------------------ Tables --------------------------------- */
+.table-medi {
+  margin-bottom: 0;
+}
+
+.table-medi thead th {
+  background-color: var(--ma-gray);
+  color: var(--ma-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-bottom: 1px solid var(--ma-border);
+  white-space: nowrap;
+}
+
+.table-medi tbody td {
+  vertical-align: middle;
+  border-color: var(--ma-border);
+}
+
+/* ------------------------------ Avatars -------------------------------- */
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--ma-blue-soft);
+  color: var(--ma-blue);
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  flex: 0 0 auto;
+}
+
+.avatar-lg {
+  width: 96px;
+  height: 96px;
+  font-size: 2rem;
+}
+
+/* ------------------------------ Misc ----------------------------------- */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--ma-muted);
+}
+
+.empty-state i {
+  font-size: 2.6rem;
+  color: var(--ma-blue);
+  opacity: 0.5;
+}
+
+.specialization-chip {
+  background-color: var(--ma-blue-soft);
+  color: var(--ma-blue-dark);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ------------------------------ Footer --------------------------------- */
+.footer-medi {
+  background-color: #0f1c2e;
+  color: #c8d3e0;
+  padding: 3rem 0 1.25rem;
+  margin-top: 3rem;
+}
+
+.footer-medi h6 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.footer-medi a {
+  color: #c8d3e0;
+}
+
+.footer-medi a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 2rem;
+  padding-top: 1rem;
+  font-size: 0.85rem;
+}
+
+/* ------------------------------ Print ---------------------------------- */
+@media print {
+  .navbar-medi, .footer-medi, .btn { display: none !important; }
+}

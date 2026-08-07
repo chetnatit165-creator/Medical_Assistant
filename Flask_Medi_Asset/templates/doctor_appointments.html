@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% from "_macros.html" import page_header, empty_state, status_badge %}
+{% block title %}My Appointments{% endblock %}
+
+{% block content %}
+{{ page_header("Assigned appointments", "Patients scheduled with you.", "clipboard2-check") }}
+
+<div class="container pb-5">
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <span>{{ appointments|length }} appointment(s)</span>
+      <a href="{{ url_for('doctor_dashboard') }}" class="btn btn-sm btn-outline-primary">Back to dashboard</a>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-medi align-middle">
+        <thead>
+          <tr><th>Patient</th><th>Email</th><th>Phone</th><th>Date &amp; Time</th><th>Reason</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          {% for appointment in appointments %}
+            <tr>
+              <td class="fw-semibold">{{ appointment.patient.username }}</td>
+              <td class="small">{{ appointment.patient.email }}</td>
+              <td class="small">{{ appointment.patient.phone }}</td>
+              <td>{{ appointment.appointment_date.strftime('%d %b %Y, %I:%M %p') }}</td>
+              <td class="text-muted-soft">{{ appointment.message|truncate(50) }}</td>
+              <td>{{ status_badge(appointment, now) }}</td>
+            </tr>
+          {% else %}
+            <tr><td colspan="6">{{ empty_state("No appointments have been assigned to you yet.", "calendar-check") }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

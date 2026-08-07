@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<section class="container py-5">
+
+
+    <!-- Page Header -->
+
+    <div class="text-center mb-5">
+
+
+        <h1 class="fw-bold">
+
+            Our Medical Specialists
+
+        </h1>
+
+
+        <p class="text-muted">
+
+            Choose from our experienced doctors and book your appointment.
+
+        </p>
+
+
+    </div>
+
+
+
+
+
+    <div class="row g-4">
+
+
+
+        {% for doctor in doctors %}
+
+
+
+        <div class="col-lg-4 col-md-6">
+
+
+
+            <div class="card doctor-card h-100 p-4">
+
+
+
+                <!-- Doctor Icon -->
+
+                <div class="doctor-avatar">
+
+
+                    <i class="bi bi-person-badge-fill"></i>
+
+
+                </div>
+
+
+
+
+
+                <h4 class="mt-4">
+
+                    {{ doctor.name }}
+
+                </h4>
+
+
+
+
+
+                <p class="text-primary fw-semibold mb-2">
+
+
+                    <i class="bi bi-heart-pulse"></i>
+
+                    {{ doctor.specialization }}
+
+
+                </p>
+
+
+
+
+
+                <p class="text-muted">
+
+
+                    <i class="bi bi-award"></i>
+
+                    {{ doctor.experience }} Years Experience
+
+
+                </p>
+
+
+
+
+
+
+                <hr>
+
+
+
+
+
+
+                <div class="d-grid">
+
+
+                    {% if current_user.is_authenticated 
+                          and current_user.role == "patient" %}
+
+
+
+                    <a href="{{ url_for('new_appointment') }}"
+                       class="btn btn-primary">
+
+
+                        <i class="bi bi-calendar-plus"></i>
+
+                        Book Appointment
+
+
+                    </a>
+
+
+
+                    {% else %}
+
+
+
+                    <a href="{{ url_for('login') }}"
+                       class="btn btn-outline-primary">
+
+
+                        Login To Book
+
+
+                    </a>
+
+
+
+                    {% endif %}
+
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+        {% else %}
+
+
+
+
+
+        <div class="col-12">
+
+
+            <div class="alert alert-info text-center">
+
+
+                <i class="bi bi-info-circle"></i>
+
+                No doctors available currently.
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+        {% endfor %}
+
+
+
+
+
+    </div>
+
+
+
+</section>
+
+
+
+{% endblock %}

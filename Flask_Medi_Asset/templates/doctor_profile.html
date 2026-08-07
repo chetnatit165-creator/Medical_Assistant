@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% from "_macros.html" import page_header, avatar %}
+{% block title %}Doctor Profile{% endblock %}
+
+{% block content %}
+{{ page_header("My profile", "Your professional details shown to patients.", "person-vcard") }}
+
+<div class="container pb-5">
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="card text-center">
+        <div class="card-body py-4">
+          <div class="d-flex justify-content-center mb-3">{{ avatar(doctor.name if doctor else current_user.username, "avatar-lg") }}</div>
+          <h2 class="h5 mb-1">Dr. {{ doctor.name if doctor else current_user.username }}</h2>
+          <span class="specialization-chip">{{ doctor.specialization if doctor }}</span>
+          <div class="d-grid gap-2 mt-4">
+            <!-- <a href="{{ url_for('edit_doctor_profile') }}" class="btn btn-primary btn-sm"><i class="bi bi-pencil me-1"></i>Edit Profile</a> -->
+            <a href="{{ url_for('appointment_list') }}" class="btn btn-outline-primary btn-sm">My Appointments</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-header">Professional information</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between"><span class="text-muted-soft">Login username</span><strong>{{ current_user.username }}</strong></li>
+          <li class="list-group-item d-flex justify-content-between"><span class="text-muted-soft">Full name</span><strong>{{ doctor.name if doctor }}</strong></li>
+          <li class="list-group-item d-flex justify-content-between"><span class="text-muted-soft">Specialization</span><strong>{{ doctor.specialization if doctor }}</strong></li>
+          <li class="list-group-item d-flex justify-content-between"><span class="text-muted-soft">Experience</span><strong>{{ doctor.experience if doctor }} years</strong></li>
+          <li class="list-group-item d-flex justify-content-between"><span class="text-muted-soft">Email</span><strong>{{ doctor.email if doctor else current_user.email }}</strong></li>
+          <li class="list-group-item d-flex justify-content-between"><span class="text-muted-soft">Phone</span><strong>{{ doctor.phone if doctor else current_user.phone }}</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
