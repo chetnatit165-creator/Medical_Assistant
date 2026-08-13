@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,548 +12,278 @@
         {% endif %}
     </title>
 
-
     <!-- Bootstrap 5 -->
-    <link 
+    <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet"
     >
 
-
     <!-- Bootstrap Icons -->
-    <link 
+    <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     >
 
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- Custom CSS -->
-    <link 
+    <link
         rel="stylesheet"
         href="{{ url_for('static', filename='css/style.css') }}"
     >
-
 </head>
-
 
 <body>
 
-
 <!-- ================= NAVBAR ================= -->
 
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-medi sticky-top">
 
-<div class="container">
+    <div class="container">
 
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center"
+           href="{{ url_for('home') }}">
 
-    <!-- Brand -->
+            <span class="brand-icon">
+                <i class="bi bi-heart-pulse-fill"></i>
+            </span>
 
-    <a class="navbar-brand d-flex align-items-center"
-       href="{{ url_for('home') }}">
+            <span class="brand-text">
+                Medi <strong>Asset</strong>
+            </span>
 
-        <i class="bi bi-heart-pulse-fill me-2"></i>
+        </a>
 
-        Medi Asset
 
-    </a>
+        <!-- Mobile button -->
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
 
+            <span class="navbar-toggler-icon"></span>
 
+        </button>
 
-    <!-- Mobile Button -->
 
-    <button 
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainNavbar">
+        <!-- Navigation -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
 
-        <span class="navbar-toggler-icon"></span>
+            <ul class="navbar-nav mx-auto align-items-lg-center">
 
-    </button>
+                <!-- Home -->
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ url_for('home') }}">
+                        Home
+                    </a>
+                </li>
 
 
+                <!-- Doctors -->
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ url_for('doctor_list') }}">
+                        Doctors
+                    </a>
+                </li>
 
 
-    <div class="collapse navbar-collapse"
-         id="mainNavbar">
+                <!-- Services -->
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ url_for('home') }}#services">
+                        Services
+                    </a>
+                </li>
 
 
-        <ul class="navbar-nav ms-auto align-items-lg-center">
+                <!-- About -->
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ url_for('about') }}">
+                        About Us
+                    </a>
+                </li>
 
 
-            <!-- Common Links -->
+                <!-- Contact -->
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{{ url_for('contact') }}">
+                        Contact
+                    </a>
+                </li>
 
+            </ul>
 
-            <li class="nav-item">
 
-                <a class="nav-link"
-                   href="{{ url_for('home') }}">
+            <!-- Right side -->
+            <div class="navbar-actions">
 
-                    <i class="bi bi-house"></i>
-                    Home
+                {% if current_user.is_authenticated %}
 
-                </a>
+                    <!-- Patient -->
+                    {% if current_user.role == "patient" %}
 
-            </li>
-
-
-
-            <li class="nav-item">
-
-                <a class="nav-link"
-                   href="{{ url_for('doctor_list') }}">
-
-                    <i class="bi bi-person-badge"></i>
-                    Doctors
-
-                </a>
-
-            </li>
-
-
-
-
-            <li class="nav-item">
-
-                <a class="nav-link"
-                   href="{{ url_for('about') }}">
-
-                    About
-
-                </a>
-
-            </li>
-
-
-
-            <li class="nav-item">
-
-                <a class="nav-link"
-                   href="{{ url_for('contact') }}">
-
-                    Contact
-
-                </a>
-
-            </li>
-
-
-
-
-
-            {% if current_user.is_authenticated %}
-
-
-            <!-- PATIENT MENU -->
-
-            {% if current_user.role == "patient" %}
-
-
-            <li class="nav-item dropdown">
-
-
-                <a class="nav-link dropdown-toggle"
-                   href="#"
-                   role="button"
-                   data-bs-toggle="dropdown">
-
-
-                    <i class="bi bi-person-circle"></i>
-
-                    Patient
-
-                </a>
-
-
-                <ul class="dropdown-menu dropdown-menu-end">
-
-
-                    <li>
-
-                        <a class="dropdown-item"
+                        <a class="nav-action-link"
                            href="{{ url_for('patient_dashboard') }}">
-
                             Dashboard
-
                         </a>
 
-                    </li>
-
-
-                    <li>
-
-                        <a class="dropdown-item"
+                        <a class="nav-action-link"
                            href="{{ url_for('appointment_list') }}">
-
                             My Appointments
-
                         </a>
 
-                    </li>
+                    {% endif %}
 
 
-                </ul>
+                    <!-- Doctor -->
+                    {% if current_user.role == "doctor" %}
 
+                        <a class="nav-action-link"
+                           href="{{ url_for('doctor_dashboard') }}">
+                            Dashboard
+                        </a>
 
-            </li>
+                    {% endif %}
 
 
+                    <!-- Admin -->
+                    {% if current_user.role == "admin" %}
 
-            {% endif %}
+                        <a class="nav-action-link"
+                           href="{{ url_for('admin_dashboard') }}">
+                            Dashboard
+                        </a>
 
+                    {% endif %}
 
 
+                    <!-- Logout -->
+                    <a href="{{ url_for('logout') }}"
+                       class="login-btn">
 
-            <!-- DOCTOR MENU -->
+                        <i class="bi bi-box-arrow-right"></i>
+                        Logout
 
-            {% if current_user.role == "doctor" %}
+                    </a>
 
 
-            <li class="nav-item">
+                {% else %}
 
+                    <a href="{{ url_for('login') }}"
+                       class="login-btn">
 
-                <a class="nav-link"
-                   href="{{ url_for('doctor_dashboard') }}">
+                        <i class="bi bi-person"></i>
+                        Login / Sign Up
 
-                    <i class="bi bi-clipboard2-pulse"></i>
+                    </a>
 
-                    Dashboard
+                {% endif %}
 
-                </a>
+            </div>
 
-
-            </li>
-
-
-            {% endif %}
-
-
-
-
-
-            <!-- ADMIN MENU -->
-
-            {% if current_user.role == "admin" %}
-
-
-            <li class="nav-item">
-
-
-                <a class="nav-link"
-                   href="{{ url_for('admin_dashboard') }}">
-
-
-                    <i class="bi bi-speedometer2"></i>
-
-                    Admin Panel
-
-
-                </a>
-
-
-            </li>
-
-
-            {% endif %}
-
-
-
-
-
-            <!-- USER -->
-
-            <li class="nav-item">
-
-
-                <a class="btn btn-light ms-lg-3"
-                   href="{{ url_for('logout') }}">
-
-
-                    <i class="bi bi-box-arrow-right"></i>
-
-                    Logout
-
-
-                </a>
-
-
-            </li>
-
-
-
-            {% else %}
-
-
-
-
-            <li class="nav-item">
-
-                <a class="btn btn-outline-light me-lg-2"
-                   href="{{ url_for('login') }}">
-
-                    Login
-
-                </a>
-
-            </li>
-
-
-
-            <li class="nav-item">
-
-                <a class="btn btn-light"
-                   href="{{ url_for('register') }}">
-
-                    Create Account
-
-                </a>
-
-            </li>
-
-
-
-
-            {% endif %}
-            {% if current_user.is_authenticated %}
-
-    {% if current_user.role == "patient" %}
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('patient_dashboard') }}">
-                Dashboard
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('doctor_list') }}">
-                Doctors
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('appointment_list') }}">
-                My Appointments
-            </a>
-        </li>
-
-
-    {% elif current_user.role == "doctor" %}
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('doctor_dashboard') }}">
-                Dashboard
-            </a>
-        </li>
-
-        <!-- Add later when routes exist -->
-        <!--
-        <li>
-            <a href="{{ url_for('doctor_appointments') }}">
-                Appointments
-            </a>
-        </li>
-        -->
-
-
-    {% elif current_user.role == "admin" %}
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('admin_dashboard') }}">
-                Dashboard
-            </a>
-        </li>
-
-        <!-- Add after creating routes -->
-        <!--
-        <li>
-            <a href="{{ url_for('manage_doctors') }}">
-                Manage Doctors
-            </a>
-        </li>
-
-        <li>
-            <a href="{{ url_for('manage_patients') }}">
-                Manage Patients
-            </a>
-        </li>
-        -->
-
-
-    {% endif %}
-
-
-
-    <li class="nav-item">
-        <a class="nav-link text-danger"
-           href="{{ url_for('logout') }}">
-            Logout
-        </a>
-    </li>
-
-
-{% else %}
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('home') }}">
-            Home
-        </a>
-    </li>
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('doctor_list') }}">
-            Doctors
-        </a>
-    </li>
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('about') }}">
-            About
-        </a>
-    </li>
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('contact') }}">
-            Contact
-        </a>
-    </li>
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('login') }}">
-            Login
-        </a>
-    </li>
-
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('register') }}">
-            Register
-        </a>
-    </li>
-
-
-{% endif %}
-
-
-
-        </ul>
-
-
+        </div>
 
     </div>
-
-
-</div>
-
 
 </nav>
 
 
+<!-- ================= FLASH MESSAGES ================= -->
 
+<div class="container flash-container">
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
 
-<!-- ================= FLASH MESSAGE ================= -->
+        {% if messages %}
 
+            {% for category, message in messages %}
 
-<div class="container mt-4">
+                <div class="alert alert-{{ category }} shadow-sm">
 
+                    <i class="bi bi-info-circle me-2"></i>
 
-{% with messages = get_flashed_messages(with_categories=true) %}
+                    {{ message }}
 
-{% if messages %}
+                </div>
 
+            {% endfor %}
 
-{% for category,message in messages %}
+        {% endif %}
 
-
-<div class="alert alert-{{category}} shadow-sm">
-
-<i class="bi bi-info-circle me-2"></i>
-
-{{ message }}
-
-
-</div>
-
-
-{% endfor %}
-
-
-{% endif %}
-
-
-{% endwith %}
-
+    {% endwith %}
 
 </div>
-
-
-
-
 
 
 <!-- ================= PAGE CONTENT ================= -->
 
+<main>
 
-{% block content %}
+    {% block content %}
+    {% endblock %}
 
-{% endblock %}
-
-
-
-
+</main>
 
 
 <!-- ================= FOOTER ================= -->
 
+<footer class="footer-medi">
 
-<footer class="mt-5">
+    <div class="container">
 
+        <div class="footer-content">
 
-<div class="container text-center">
+            <div>
 
+                <div class="footer-logo">
 
-<h5>
+                    <span class="brand-icon">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                    </span>
 
-<i class="bi bi-heart-pulse-fill"></i>
+                    Medi <strong>Asset</strong>
 
-Medi Asset
+                </div>
 
-</h5>
+                <p>
+                    Smart Healthcare Appointment Management System
+                </p>
 
+            </div>
 
-<p>
-
-Smart Healthcare Appointment Management System
-
-</p>
-
-
-<small>
-
-© 2026 Medi Asset. All Rights Reserved.
-
-</small>
+        </div>
 
 
-</div>
+        <div class="footer-bottom">
 
+            <small>
+                © 2026 Medi Asset. All Rights Reserved.
+            </small>
+
+        </div>
+
+    </div>
 
 </footer>
 
 
-
-
-
-<script 
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+<!-- Bootstrap JavaScript -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 </script>
 
-
 </body>
-
 </html>

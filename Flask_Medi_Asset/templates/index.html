@@ -2,436 +2,418 @@
 
 {% block content %}
 
-
-<!-- ================= HERO SECTION ================= -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
-
     <div class="container">
+        <div class="row align-items-center g-5">
 
-        <div class="row align-items-center">
-
+            <!-- LEFT CONTENT -->
             <div class="col-lg-7">
+
+                <span class="badge rounded-pill bg-primary-subtle text-primary px-3 py-2 mb-3">
+                    <i class="bi bi-heart-pulse-fill me-1"></i>
+                    Trusted Healthcare Platform
+                </span>
 
                 <h1>
                     Quality Healthcare,
                     <br>
                     Trusted Doctors,
+                    <br>
                     Better Life
                 </h1>
 
-
                 <p class="mt-3">
-
-                    Medi Asset helps patients connect with
-                    experienced doctors and manage appointments
-                    easily through a secure healthcare platform.
-
+                    Medi Asset helps patients connect with experienced
+                    doctors and manage appointments easily through a
+                    secure and modern healthcare platform.
                 </p>
 
+                <div class="hero-buttons mt-4">
 
-                {% if current_user.is_authenticated %}
+                    {% if current_user.is_authenticated %}
 
-                    {% if current_user.role == "patient" %}
+                        {% if current_user.role == "patient" %}
 
-                    <a href="{{ url_for('new_appointment') }}"
-                       class="btn btn-light btn-lg mt-3">
+                        <a href="{{ url_for('new_appointment') }}"
+                           class="btn btn-primary btn-lg">
+                            <i class="bi bi-calendar-plus me-2"></i>
+                            Book Appointment
+                        </a>
 
-                        <i class="bi bi-calendar-plus"></i>
-                        Book Appointment
+                        {% endif %}
 
+                    {% else %}
+
+                    <a href="{{ url_for('register') }}"
+                       class="btn btn-primary btn-lg">
+                        <i class="bi bi-person-plus me-2"></i>
+                        Get Started
+                    </a>
+
+                    <a href="{{ url_for('doctor_list') }}"
+                       class="btn btn-outline-primary btn-lg ms-2">
+                        Find a Doctor
                     </a>
 
                     {% endif %}
 
+                </div>
 
-                {% else %}
+                <!-- TRUST ITEMS -->
 
+                <div class="hero-trust mt-4">
 
-                <a href="{{ url_for('register') }}"
-                   class="btn btn-light btn-lg mt-3">
+                    <div>
+                        <i class="bi bi-shield-check"></i>
+                        Secure Platform
+                    </div>
 
-                    <i class="bi bi-person-plus"></i>
-                    Get Started
+                    <div>
+                        <i class="bi bi-person-check"></i>
+                        Qualified Doctors
+                    </div>
 
-                </a>
-
-
-                {% endif %}
-
-
-            </div>
-
-
-
-            <div class="col-lg-5 text-center mt-4 mt-lg-0">
-
-
-                <div class="card p-4">
-
-                    <i class="bi bi-heart-pulse-fill display-1 text-primary"></i>
-
-
-                    <h3 class="mt-3">
-
-                        Complete Healthcare Solution
-
-                    </h3>
-
-
-                    <p>
-
-                        Appointment booking,
-                        doctor management,
-                        and healthcare services.
-
-                    </p>
-
+                    <div>
+                        <i class="bi bi-calendar-check"></i>
+                        Easy Booking
+                    </div>
 
                 </div>
 
-
             </div>
 
 
-        </div>
+            <!-- RIGHT SIDE -->
 
+            <div class="col-lg-5">
+
+                <div class="hero-doctor-wrapper">
+
+                    <!-- Decorative Circle -->
+
+                    <div class="doctor-bg-circle"></div>
+
+                    <!-- Doctor Image -->
+
+                    <div class="doctor-image-card">
+
+                        <img src="{{ url_for('static', filename='images/doctor.png') }}"
+                             alt="Doctor"
+                             class="hero-doctor-image">
+
+                        <div class="doctor-floating-card">
+
+                            <div class="doctor-check">
+                                <i class="bi bi-check-lg"></i>
+                            </div>
+
+                            <div>
+                                <strong>Trusted Doctors</strong>
+                                <small>Available for appointments</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Healthcare Card -->
+
+                    <div class="healthcare-info-card">
+
+                        <div class="healthcare-icon">
+                            <i class="bi bi-heart-pulse-fill"></i>
+                        </div>
+
+                        <div>
+                            <h5>Complete Healthcare Solution</h5>
+                            <p>
+                                Appointments, doctors and healthcare
+                                services — all in one place.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================= WHY CHOOSE ================= -->
+
+<section class="container py-5">
+
+    <div class="section-heading text-center mb-5">
+
+        <span class="section-label">
+            WHY MEDI ASSET
+        </span>
+
+        <h2 class="fw-bold mt-2">
+            Why Choose Medi Asset?
+        </h2>
+
+        <p>
+            Modern healthcare management made simple,
+            secure and convenient.
+        </p>
 
     </div>
 
 
-</section>
+    <div class="row g-4">
 
+        <!-- CARD 1 -->
 
+        <div class="col-md-4">
 
+            <div class="feature-card h-100">
 
+                <div class="feature-icon">
+                    <i class="bi bi-person-check-fill"></i>
+                </div>
 
+                <h4>Expert Doctors</h4>
 
-<!-- ================= SERVICES ================= -->
+                <p>
+                    Connect with qualified healthcare professionals
+                    from different medical specializations.
+                </p>
 
+                <a href="{{ url_for('doctor_list') }}">
+                    Find Doctors
+                    <i class="bi bi-arrow-right ms-1"></i>
+                </a>
 
-<section class="container mt-5">
+            </div>
 
+        </div>
 
-<div class="text-center mb-5">
 
+        <!-- CARD 2 -->
 
-<h2 class="fw-bold">
+        <div class="col-md-4">
 
-Why Choose Medi Asset?
+            <div class="feature-card h-100">
 
-</h2>
+                <div class="feature-icon">
+                    <i class="bi bi-calendar-check-fill"></i>
+                </div>
 
+                <h4>Easy Appointment</h4>
 
-<p class="text-muted">
+                <p>
+                    Book and manage appointments quickly without
+                    unnecessary waiting or complicated processes.
+                </p>
 
-Modern healthcare management made simple.
+                {% if current_user.is_authenticated and current_user.role == "patient" %}
 
-</p>
+                <a href="{{ url_for('new_appointment') }}">
+                    Book Now
+                    <i class="bi bi-arrow-right ms-1"></i>
+                </a>
 
+                {% endif %}
 
-</div>
+            </div>
 
+        </div>
 
 
+        <!-- CARD 3 -->
 
-<div class="row g-4">
+        <div class="col-md-4">
 
+            <div class="feature-card h-100">
 
-<div class="col-md-4">
+                <div class="feature-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
 
+                <h4>Secure Platform</h4>
 
-<div class="card h-100 p-4 text-center">
+                <p>
+                    Your healthcare information is managed through
+                    a secure and reliable healthcare system.
+                </p>
 
+                <a href="{{ url_for('about') }}">
+                    Learn More
+                    <i class="bi bi-arrow-right ms-1"></i>
+                </a>
 
-<i class="bi bi-person-check-fill display-4 text-primary"></i>
+            </div>
 
+        </div>
 
-<h4 class="mt-3">
-
-Expert Doctors
-
-</h4>
-
-
-<p>
-
-Connect with qualified healthcare professionals
-from different specializations.
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="col-md-4">
-
-
-<div class="card h-100 p-4 text-center">
-
-
-<i class="bi bi-calendar-check-fill display-4 text-primary"></i>
-
-
-<h4 class="mt-3">
-
-Easy Appointment
-
-</h4>
-
-
-<p>
-
-Book and manage appointments quickly
-without unnecessary waiting.
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div class="col-md-4">
-
-
-<div class="card h-100 p-4 text-center">
-
-
-<i class="bi bi-shield-check display-4 text-primary"></i>
-
-
-<h4 class="mt-3">
-
-Secure Platform
-
-</h4>
-
-
-<p>
-
-Your healthcare information is managed
-through a secure system.
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
+    </div>
 
 </section>
 
 
+<!-- ================= DOCTORS ================= -->
 
+<section class="container py-5">
 
+    <div class="section-top">
 
+        <div>
 
+            <span class="section-label">
+                OUR MEDICAL TEAM
+            </span>
 
+            <h2 class="fw-bold mt-2">
+                Our Doctors
+            </h2>
 
-<!-- ================= DOCTOR SECTION ================= -->
+            <p>
+                Meet our experienced medical professionals.
+            </p>
 
+        </div>
 
-<section class="container mt-5 mb-5">
+        <a href="{{ url_for('doctor_list') }}"
+           class="btn btn-outline-primary">
 
+            View All Doctors
+            <i class="bi bi-arrow-right ms-1"></i>
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+        </a>
 
+    </div>
 
-<div>
 
-<h2 class="fw-bold">
+    <div class="row g-4 mt-2">
 
-Our Doctors
+        {% for doctor in doctors %}
 
-</h2>
+        <div class="col-md-6 col-lg-3">
 
+            <div class="doctor-card-new h-100">
 
-<p class="text-muted">
+                <div class="doctor-avatar-new">
 
-Meet our experienced medical professionals.
+                    <i class="bi bi-person-fill"></i>
 
-</p>
+                </div>
 
-</div>
+                <span class="doctor-status">
+                    <i class="bi bi-circle-fill"></i>
+                    Available
+                </span>
 
+                <h5 class="mt-3">
+                    {{ doctor.name }}
+                </h5>
 
+                <p class="doctor-specialization">
+                    {{ doctor.specialization }}
+                </p>
 
-<a href="{{ url_for('doctor_list') }}"
-   class="btn btn-primary">
+                <p class="doctor-experience">
+                    <i class="bi bi-briefcase me-1"></i>
+                    {{ doctor.experience }} Years Experience
+                </p>
 
-View All Doctors
+                <a href="{{ url_for('new_appointment') }}"
+                   class="btn btn-outline-primary w-100 mt-2">
 
-</a>
+                    Book Appointment
 
+                </a>
 
-</div>
+            </div>
 
+        </div>
 
+        {% else %}
 
+        <div class="col-12">
 
+            <div class="empty-doctors">
 
-<div class="row g-4">
+                <i class="bi bi-person-x"></i>
 
+                <h5>No doctors available currently.</h5>
 
+                <p>
+                    Please check again later.
+                </p>
 
-{% for doctor in doctors %}
+            </div>
 
+        </div>
 
+        {% endfor %}
 
-<div class="col-md-6 col-lg-3">
-
-
-<div class="card doctor-card h-100">
-
-
-<div class="doctor-avatar">
-
-
-<i class="bi bi-person-fill"></i>
-
-
-</div>
-
-
-
-
-<h5 class="mt-3">
-
-{{ doctor.name }}
-
-</h5>
-
-
-
-<p class="text-primary fw-semibold">
-
-{{ doctor.specialization }}
-
-</p>
-
-
-
-<p class="text-muted">
-
-{{ doctor.experience }} Years Experience
-
-</p>
-
-
-
-<a href="{{ url_for('new_appointment') }}"
-   class="btn btn-outline-primary">
-
-Book Appointment
-
-</a>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-{% else %}
-
-
-
-<div class="col-12">
-
-
-<div class="alert alert-info text-center">
-
-No doctors available currently.
-
-</div>
-
-
-</div>
-
-
-{% endfor %}
-
-
-
-
-
-</div>
-
-
+    </div>
 
 </section>
 
 
+<!-- ================= CTA ================= -->
 
+<section class="container py-5">
 
+    <div class="cta-section">
 
+        <div class="row align-items-center">
 
-<!-- ================= CALL TO ACTION ================= -->
+            <div class="col-lg-8">
 
+                <span class="cta-label">
+                    YOUR HEALTH MATTERS
+                </span>
 
-<section class="container mb-5">
+                <h2>
+                    Take Care of Your Health Today
+                </h2>
 
+                <p>
+                    Schedule an appointment with our healthcare
+                    experts and take the next step toward better health.
+                </p>
 
-<div class="card p-5 text-center">
+            </div>
 
+            <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
 
-<h2 class="fw-bold">
+                {% if not current_user.is_authenticated %}
 
-Take Care of Your Health Today
+                <a href="{{ url_for('register') }}"
+                   class="btn btn-light btn-lg">
 
-</h2>
+                    Create Patient Account
+                    <i class="bi bi-arrow-right ms-2"></i>
 
+                </a>
 
-<p class="text-muted">
+                {% else %}
 
-Schedule an appointment with our healthcare experts.
+                <a href="{{ url_for('doctor_list') }}"
+                   class="btn btn-light btn-lg">
 
-</p>
+                    Find a Doctor
+                    <i class="bi bi-arrow-right ms-2"></i>
 
+                </a>
 
+                {% endif %}
 
-{% if not current_user.is_authenticated %}
+            </div>
 
+        </div>
 
-<a href="{{ url_for('register') }}"
-   class="btn btn-primary btn-lg">
-
-Create Patient Account
-
-</a>
-
-
-{% endif %}
-
-
-
-</div>
-
+    </div>
 
 </section>
-
-
 
 {% endblock %}
